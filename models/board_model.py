@@ -20,9 +20,9 @@ class BoardModel(AbstractModel):
                     if neightbor.alive:
                         alive_neightbors += 1
                 if cell.alive:
-                    cell.alive = alive_neightbors == 3 or alive_neightbors == 4
+                    cell.alive = (alive_neightbors == 2 or alive_neightbors == 3)
                 else:
-                    cell.alive = alive_neightbors == 3
+                    cell.alive = (alive_neightbors == 3)
         self.modify()
 
 
