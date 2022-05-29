@@ -19,10 +19,12 @@ class App():
         """Create models, views and controllers"""
         self.__controller = controller
         board = BoardModel()
+        self.__view = MainView("MainView", self.WINDOW_WIDTH, self.WINDOW_HEIGHT)
         board_view = BoardView("BoardView", self.WINDOW_HEIGHT, board)
         action_view = ActionView("ActionView")
         board.add_observer(board_view)
-
+        board.add_observer(action_view)
+       
         # Create cells
         for i in range(self.BOARD_SIZE):
             for j in range(self.BOARD_SIZE):
@@ -32,8 +34,7 @@ class App():
                     "CellView[" + str(i) + "][" + str(j) + "]", cell)
                 cell.add_observer(cell_view)
                 board_view.add_component(cell_view)
-
-        self.__view = MainView("MainView", self.WINDOW_WIDTH, self.WINDOW_HEIGHT)
+        
         self.__view.add_component(board_view)
         self.__view.add_component(action_view)
 

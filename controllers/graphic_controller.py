@@ -20,8 +20,10 @@ class GraphicController(AbstractController):
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         exit()
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        pass
-                self._view.show()
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            self._model.change_simulation_state()
+                            self._model.modify()
                 #TODO: all cell states have to be updated there, always
+                self._view.show()
                 pygame.display.flip()
