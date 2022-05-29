@@ -4,7 +4,7 @@ import random
 
 
 class CellModel(AbstractModel):
-    BORN_ALIVE_CHANCE = 0.1
+    BORN_ALIVE_CHANCE = 0.3
 
     def __init__(self, x_pos, y_pos):
         """Create alive or dead cell based on BORN_ALIVE_CHANCE"""
@@ -35,3 +35,7 @@ class CellModel(AbstractModel):
     @property
     def alive(self):
         return self.__alive
+        
+    @alive.setter 
+    def alive(self, value):
+        self.__alive = value

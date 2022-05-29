@@ -18,7 +18,7 @@ class App():
     def __init__(self, controller):
         """Create models, views and controllers"""
         self.__controller = controller
-        board = BoardModel()
+        board = BoardModel(self.BOARD_SIZE)
         self.__view = MainView("MainView", self.WINDOW_WIDTH, self.WINDOW_HEIGHT)
         board_view = BoardView("BoardView", self.WINDOW_HEIGHT, board)
         action_view = ActionView("ActionView")

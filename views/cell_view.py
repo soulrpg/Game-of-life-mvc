@@ -17,8 +17,7 @@ class CellView(AbstractView):
 
 
     def update(self, *args, **kwargs):
-        self.__x_pos = x_pos
-        self.__y_pos = y_pos
+        self.__alive = args[0].alive
 
 
     def show(self, surface):
