@@ -7,21 +7,26 @@ class AbstractController(ABC):
         self._model = model
         self._view = view
 
+
     @abstractmethod
     def get_user_input(self):
         pass
+
 
     @property
     def model(self):
         return self._model
 
+
     @model.setter
     def model(self, value):
         self._model = value
 
+
     @property
     def view(self):
         return self._view
+
 
     @view.setter
     def view(self, value):

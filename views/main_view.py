@@ -9,22 +9,22 @@ class MainView(AbstractView):
     def __init__(self, name, window_width, window_height, model=None):
         """Setup pygame window"""
         super().__init__(name, model)
+        pygame.init()
+        pygame.display.set_caption("Game of life")
         size = (window_width, window_height)
         self.__screen = pygame.display.set_mode(size)
-        self.__screen.fill(self.SCREEN_COLOR)
-        
-
-    @property
-    def screen(self):
-        return self.__screen
 
 
     def add_component(self, comp):
         super().add_component(comp)
 
+
     def update(self, *args, **kwargs):
         pass
 
+
     def show(self):
-        pass
-        
+        """Display nested view's children"""
+        self.__screen.fill(self.SCREEN_COLOR)
+        for child in self.get_children():
+            child.show(self.__screen)

@@ -7,12 +7,10 @@ from views.action_view import ActionView
 from views.cell_view import CellView
 from views.main_view import MainView
 
-import pygame
-
 
 class App():
     """App initializer class"""
-    BOARD_SIZE = 20
+    BOARD_SIZE = 36
     WINDOW_WIDTH = 960
     WINDOW_HEIGHT = 720
 
@@ -21,7 +19,7 @@ class App():
         """Create models, views and controllers"""
         self.__controller = controller
         board = BoardModel()
-        board_view = BoardView("BoardView", board)
+        board_view = BoardView("BoardView", self.WINDOW_HEIGHT, board)
         action_view = ActionView("ActionView")
         board.add_observer(board_view)
 
@@ -29,7 +27,9 @@ class App():
         for i in range(self.BOARD_SIZE):
             for j in range(self.BOARD_SIZE):
                 cell = CellModel(i, j)
-                cell_view = CellView("CellView", cell)
+                board.add_cell(cell)
+                cell_view = CellView(\
+                    "CellView[" + str(i) + "][" + str(j) + "]", cell)
                 cell.add_observer(cell_view)
                 board_view.add_component(cell_view)
 
@@ -38,17 +38,9 @@ class App():
         self.__view.add_component(action_view)
 
         self.__controller.model = board
-        self.__controller.view = action_view
-        
-        pygame.init()
-        pygame.display.set_caption("Game of life")
+        self.__controller.view = self.__view
 
 
     def run(self):
         """Main loop of the app"""
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
-            pygame.display.flip()
+        self.__controller.get_user_input()
