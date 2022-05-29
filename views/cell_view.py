@@ -1,9 +1,12 @@
+"""Concrete CellView"""
+
 from .abstract_view import AbstractView
 import pygame
 
-class CellView(AbstractView):
-    CELL_COLOR = (10, 10, 50)
 
+class CellView(AbstractView):
+    """Single cell view class"""
+    CELL_COLOR = (10, 10, 50)
 
     def __init__(self, name, model=None):
         super().__init__(name, model)
@@ -20,7 +23,7 @@ class CellView(AbstractView):
         self.__alive = args[0].alive
 
 
-    def show(self, surface):
+    def show(self, surface=None):
         if self.__alive:
             pygame.draw.rect(surface, self.CELL_COLOR,\
                 (20 * self.__x_pos, 20 * self.__y_pos, 20, 20))

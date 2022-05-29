@@ -24,7 +24,7 @@ class App():
         action_view = ActionView("ActionView")
         board.add_observer(board_view)
         board.add_observer(action_view)
-       
+
         # Create cells
         for i in range(self.BOARD_SIZE):
             for j in range(self.BOARD_SIZE):
@@ -34,7 +34,7 @@ class App():
                     "CellView[" + str(i) + "][" + str(j) + "]", cell)
                 cell.add_observer(cell_view)
                 board_view.add_component(cell_view)
-        
+
         self.__view.add_component(board_view)
         self.__view.add_component(action_view)
 

@@ -1,27 +1,27 @@
+"""Concrete view ActioView"""
+
 from .abstract_view import AbstractView
 import pygame
 
+
 class ActionView(AbstractView):
+    """View holding information about possible actions"""
     TEXT_COLOR = (255, 255, 255)
     TEXT_COLOR_RUNNING = (120, 255, 120)
     TEXT_COLOR_STOPPED = (255, 120, 150)
-
 
     def __init__(self, name, model=None):
         super().__init__(name, model)
         self.__simulation_running = False
         self.__font = pygame.font.SysFont(None, 24)
-        
 
     def add_component(self, comp):
         pass
 
-
     def update(self, *args, **kwargs):
         self.__simulation_running = args[0].simulation_running
 
-
-    def show(self, surface):
+    def show(self, surface=None):
         status_text = ""
         action_text = ""
         status_color = None
@@ -39,5 +39,3 @@ class ActionView(AbstractView):
         surface.blit(action_rendered, (760, 80))
         simulation_label = self.__font.render("simulation", True, self.TEXT_COLOR)
         surface.blit(simulation_label, (760, 100))
-        
-        
