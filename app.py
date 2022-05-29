@@ -7,6 +7,8 @@ from views.action_view import ActionView
 from views.cell_view import CellView
 from views.main_view import MainView
 
+import pygame
+
 
 class App():
     """App initializer class"""
@@ -37,8 +39,16 @@ class App():
 
         self.__controller.model = board
         self.__controller.view = action_view
+        
+        pygame.init()
+        pygame.display.set_caption("Game of life")
 
 
     def run(self):
-        """Run the app"""
-        print("App run successfully")
+        """Main loop of the app"""
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+            pygame.display.flip()
