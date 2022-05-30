@@ -77,3 +77,11 @@ class BoardModel(AbstractModel):
     def simulation_running(self):
         """Get simulation_running"""
         return self.__simulation_running
+        
+    def reset(self):
+        """Randomize state of the board"""
+        for cell_row in self.cells:
+            for cell in cell_row:
+                cell.reset()
+        self.__simulation_running = False
+        self.modify()

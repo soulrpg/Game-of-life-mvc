@@ -30,6 +30,8 @@ class GraphicController(AbstractController):
                     if event.key == pygame.K_SPACE:
                         self._model.change_simulation_state()
                         self._model.modify()
+                    elif event.key == pygame.K_r:
+                        self.model.reset()
             if self._model.simulation_running:
                 self._model.tick()
             self._view.show()

@@ -25,6 +25,7 @@ class ActionView(AbstractView):
         status_text = ""
         action_text = ""
         status_color = None
+        reset_text = "Press R to RESET"
         if self.__simulation_running:
             status_text = "Status: RUNNING"
             action_text = "Press SPACE to PAUSE"
@@ -39,3 +40,5 @@ class ActionView(AbstractView):
         surface.blit(action_rendered, (760, 80))
         simulation_label = self.__font.render("simulation", True, self.TEXT_COLOR)
         surface.blit(simulation_label, (760, 100))
+        reset_label = self.__font.render(reset_text, True, self.TEXT_COLOR)
+        surface.blit(reset_label, (760, 140))

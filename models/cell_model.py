@@ -13,7 +13,7 @@ class CellModel(AbstractModel):
         super().__init__()
         self.__x_pos = x_pos
         self.__y_pos = y_pos
-        self.__alive = random.random() < self.BORN_ALIVE_CHANCE
+        self.reset()
 
     def modify(self, *args, **kwargs):
         """Modify cell"""
@@ -43,3 +43,7 @@ class CellModel(AbstractModel):
     def alive(self, value):
         """Set alive"""
         self.__alive = value
+        
+    def reset(self):
+        """Reset cell state"""
+        self.__alive = random.random() < self.BORN_ALIVE_CHANCE
